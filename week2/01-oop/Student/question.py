@@ -20,6 +20,40 @@ class Dog:
 #TODO
 #Please write a example of how to use Dog class
 
+#TODO See the following code
+#Question: Please correct the errors of the following code
+#It should print the total number of books is 2
+class Book:
+    # Class attribute
+    total_books = 0
+
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        total_books = total_books + 1
+
+    def set_details(self, title, author):
+        self.title = title
+        self.author = author
+
+    def display_details(self):
+        print("Title: ", self.title, "Author: " ,self.author)
+
+    def display_total_books():
+        print("Total books: ", total_books)
+
+# Usage:
+book1 = Book("1984", "George Orwell")
+book2 = Book("Brave New World", "Aldous Huxley")
+
+
+book1.display_details()             # Output: Title: 1984, Author: George Orwell
+book2.display_details()             # Output: Title: Brave New World, Author: Aldous Huxley
+
+book2.set_details("To Kill a Mockingbird", "Harper Lee")
+book2.display_details()             # Output: Title: To Kill a Mockingbird, Author: Harper Lee
+
+Book.display_total_books()          # Output: Total books: 2
 
 #TODO
 #Use the turtle class to draw a square, each side has 200 steps
