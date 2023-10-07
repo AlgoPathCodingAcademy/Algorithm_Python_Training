@@ -23,6 +23,10 @@ class Dog:
 #TODO See the following code
 #Question: Please correct the errors of the following code
 #It should print the total number of books is 2
+
+#TODO
+#Question: After the error is fixed, please use 2 ways to change
+#the author of book 1, which way do you think.
 class Book:
     # Class attribute
     total_books = 0
@@ -56,7 +60,106 @@ book2.display_details()             # Output: Title: To Kill a Mockingbird, Auth
 Book.display_total_books()          # Output: Total books: 2
 
 #TODO
-#Use the turtle class to draw a square, each side has 200 steps
+#Correct the following error program:
+'''
+class Student:
+    total_students = 0
+
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+        total_students += 1
+
+    # Instance method to display student info
+    def display_info(self):
+        return f"Student Name: {name}, Age: {age}, Grade: {grade}"
+
+    # Class method to show the total number of students
+    @classmethod
+    def show_total_students(cls):
+        return cls.total_students
+
+    # Static method to determine if the grade is passing
+    @staticmethod
+    def is_passing(grade):
+        if grade >= 50:
+            return True
+        return False
+
+# Test the class:
+s1 = Student("Alice", 20, 65)
+print(s1.display_info())
+print(Student.is_passing(s1.grade))
+print(Student.show_total_students())
+'''
+
+#TODO
+#Complete the following task
+# Imagine you're developing a system for a school to manage its students. Please create a Student class with the following requirements:
+# Instance Attributes:
+# name: Represents the student's name.
+# age: Represents the student's age.
+# grade: the student's grades.
+# Instance Method:
+# add_grade(grade): Adds this student's grade to the system.
+# Class Attribute:
+# school_name: Represents the name of the school. Initially set to "Unnamed School".
+# Class Method:
+# set_school_name(new_name: str): Sets the name of the school.
+# average_grade(): Returns the average grade of whole student.
+# Static Method:
+# is_passing_grade(grade: float) -> bool: Returns True if the grade is 50 or above, otherwise returns False.
+
+#TODO
+# You're developing software for a zoo. 
+# Animals at the zoo have general attributes (like name, species, and age) and general behaviors (like speak and eat).
+# Different types of animals have some species-specific behaviors. For instance:
+# Birds can fly.
+# Fish can swim.
+# Given the Animal Base class as follows, create two children(sub) class named Bird and Fish that inherit from Animal.
+# Add species-specific behaviors to the derived classes.
+# For bird class, 1. add fly method 2. overide speak method of base class
+# For fish class, 1. add swim method 2. overide spake method of base class
+class Animal:
+    def __init__(self, name, species, age):
+        self.name = name
+        self.species = species
+        self.age = age
+
+    def speak(self):
+        pass
+
+    def eat(self, food):
+        return f"{self.name} eats {food}."
+
+#TODO
+#Looking into https://github.com/pyGuru123/Python-Games/blob/master/Aeroblasters/main.py
+#1. List the external Python modules it uses
+#2. List few external Python classes it uses
+#3. In Line 36: pygame.image.load('Assets/plane.png'), what is image in this context ?
+#4. In Line 183: is update() a class method or instance method or static method (tap_to_play_msg.update())
+
+#TODO
+#Use the Turtle class (class turtle.Turtle) to draw a square, each side has 200 steps
+# Module
+#https://trinket.io/turtle
+#https://docs.python.org/3/library/turtle.html
+#import turtle
+
+#TODO
+#Look into Python Fraction moudle and try to figure out using this Fraction module to 
+#create fraction addition and print the result. Part of the code is listed as below:
+
+#import fractions
+#TODO please complete the following code to create
+# two Fraction objects.
+# Define two fractions
+#f1 = ?  # Represents 1/4
+#f2 = ?  # Represents 2/3
+# Add the fractions
+#result = f1 + f2
+#print(result)  # 11/12
 
 #TODO
 #Read the documentation of list in the following
