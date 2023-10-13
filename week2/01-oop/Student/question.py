@@ -168,3 +168,71 @@ class Animal:
 #How many ways the list object can be created
 #Give some methods of list class
 #Give example of creating a list and uses one of methods you find in the documentation
+
+#Local variable, Enclosing variable and Global variable
+#TODO
+#What's the final output of the following code ?
+'''
+def local_example():
+    x = 10
+    print("Inside function:", x)
+
+local_example()
+print("Outside function:", x)
+'''
+#What's the final output of the following code ?
+y = 20
+def global_example():
+    global y
+    print("Inside function (before change):", y)
+    y = 30
+    print("Inside function (after change):", y)
+
+global_example()
+print("Outside function:", y)
+
+#What's the final output of the following code ?
+def outer():
+    z = 40
+    def inner():
+        nonlocal z
+        print("Inside inner (before change):", z)
+        z = 50
+        print("Inside inner (after change):", z)
+    inner()
+    print("Inside outer:", z)
+
+outer()
+
+#What's the final output of the following code?
+a = 100
+
+def first_function():
+    a = 200
+    def second_function():
+        nonlocal a
+        a = 300
+    second_function()
+    print("Inside first_function:", a)
+
+first_function()
+print("Global scope:", a)
+
+
+#Mutable vs immutable
+#TODO
+#What's the final value of items ? Why ? 
+def add_item(item, items=[]):
+    items.append(item)
+    return items
+
+print(add_item("apple"))
+print(add_item("banana"))
+
+#TODO
+#What's the final value of s ? Why ?
+s = "world"
+print(f"Original string: {s}, id: {id(s)}")
+
+s = "Hello " + s
+print(f"String after concatenation: {s}, id: {id(s)}")
