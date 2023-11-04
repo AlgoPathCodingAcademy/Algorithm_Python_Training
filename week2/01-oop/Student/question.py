@@ -144,6 +144,9 @@ class Animal:
 #Use the Turtle class (class turtle.Turtle) to draw a square, each side has 200 steps
 # Module
 #https://trinket.io/turtle
+#Please pay attention to the following mentioned in the link above for eaysier understanding
+#Methods of RawTurtle/Turtle and corresponding functions¶
+#Most of the examples in this section refer to a Turtle instance called turtle.
 #https://docs.python.org/3/library/turtle.html
 #import turtle
 

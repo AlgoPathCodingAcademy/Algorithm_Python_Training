@@ -202,7 +202,7 @@ print(random.__file__)
 #Step 2. Find what classes are available in the random Python module
 # class random.Random
 # class random.SystemRandom
-# Looks not ideal by looking into the documentation
+# Looks not ideal(Can't be done by these two classes) by looking into the documentation
 
 #Step 3. Any Module function available ?
 # Directly call module function
