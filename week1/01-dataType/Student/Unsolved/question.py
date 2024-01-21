@@ -11,7 +11,7 @@ value_str = "3"
 #Please type world hello
 #After it is fixed, it should print hello world
 input_value = input("Input a string\n")
-print(input_value + " world")
+print(input_value + "world")
 
 #TODO print the world "print me". Please keep double quote when printing
 
