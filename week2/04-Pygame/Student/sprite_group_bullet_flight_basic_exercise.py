@@ -51,13 +51,9 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
 
     def shoot(self):
+        #TODO Change the following to support multiple bullets
         bullet = Bullet(self.rect.centerx, self.rect.top)
         bullets.add(bullet)  # Add bullet only to bullets group
-
-        #Support multiple bullets at the same time
-        #for offset in range(-20, 25, 10):  # This creates bullets at offsets -20, -10, 0, 10, 20 from the player's center
-          #bullet = Bullet(self.rect.centerx + offset, self.rect.top)
-          #bullets.add(bullet)
 
 # Groups
 all_sprites = pygame.sprite.Group()
