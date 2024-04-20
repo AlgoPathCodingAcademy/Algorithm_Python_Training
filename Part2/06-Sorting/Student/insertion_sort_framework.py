@@ -1,0 +1,36 @@
+
+# Given funciton def insertNumber(index,input_list):
+# This function completes a key substep in the insertion sort algorithm:
+# 'index' refers to the position of the element selected for insertion.
+# This substep locates the proper insertion point for the element by moving leftward
+# through 'input_list' until it finds an element smaller than the one being inserted.
+# The element at 'index' is then inserted immediately after the smaller element found.
+# 'input_list' is the list being sorted
+
+#For example, it will generate the following output:
+#Given input_list = [23,29,15,19,31,7,9,5,2]
+#insertNumber(1,input_list)
+#print(input_list) #should be [23, 29, 15, 19, 31, 7, 9, 5, 2]
+
+#insertNumber(2,input_list)
+#print(input_list) #should be [15, 23, 29, 19, 31, 7, 9, 5, 2]
+
+#insertNumber(3,input_list)
+#print(input_list) #should be [15, 19, 23, 29, 31, 7, 9, 5, 2]
+
+#insertNumber(4,input_list)
+#print(input_list) #should be [15, 19, 23, 29, 31, 7, 9, 5, 2]
+
+#insertNumber(5,input_list)
+#print(input_list) #should be [7, 15, 19, 23, 29, 31, 9, 5, 2]
+
+#insertNumber(6,input_list)
+#print(input_list) #should be [7, 9, 15, 19, 23, 29, 31, 5, 2]
+
+#insertNumber(7,input_list)
+#print(input_list) #should be [5, 7, 9, 15, 19, 23, 29, 31, 2]
+
+#insertNumber(8,input_list)
+#print(input_list) #should be [2, 5, 7, 9, 15, 19, 23, 29, 31]
+
+#Please use this function to implement insertion sort
