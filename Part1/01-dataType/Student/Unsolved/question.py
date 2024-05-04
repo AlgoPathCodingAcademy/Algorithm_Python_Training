@@ -8,12 +8,12 @@ value_str = "3"
 # and print the return value
 
 #TODO fix the error of the following code
-#Please type world hello
+#Please type hello
 #After it is fixed, it should print hello world
 input_value = input("Input a string\n")
 print(input_value + "world")
 
-#TODO print the world "print me". Please keep double quote when printing
+#TODO print the word "print me". Please keep double quote when printing
 
 
 #TODO Figure out the data type of the following first by yourself and then verify it using type function
