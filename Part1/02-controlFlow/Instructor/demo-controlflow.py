@@ -20,6 +20,25 @@ elif (guessed_value == answer_value):
 else:
     print("Too small")
 
+#Sample code the calculator
+num1 = float(input("Enter the first number: "))
+num2 = float(input("Enter the second number: "))
+operation = input("Choose the operation (+, -, *, /): ")
+
+if operation == '+':
+    print(str(num1) + " + " + str(num2) + " = " + str(num1 + num2))
+elif operation == '-':
+    print(str(num1) + " - " + str(num2) + " = " + str(num1 - num2))
+elif operation == '*':
+    print(str(num1) + " * " + str(num2) + " = " + str(num1 * num2))
+elif operation == '/':
+    if num2 != 0:
+        print(str(num1) + " / " + str(num2) + " = " + str(num1 / num2))
+    else:
+        print("Division by zero is not allowed.")
+else:
+    print("Invalid operation")
+
 #Iteration:
 #Add some repetition:
 

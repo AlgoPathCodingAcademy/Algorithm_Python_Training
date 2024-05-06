@@ -13,6 +13,14 @@
 #If the temperature is between 0°C (inclusive) and 100°C (exclusive), it should print "The water is in liquid state."
 #If the temperature is 100°C or above, it should print "The water is in gaseous state (steam)."
 
+#Develop a program that determines the age group of a person based on their age.
+#Use the following categories: Child (0-12), Teen (13-19), Adult (20-64), Senior (65+).
+#Note:12, 19, 64, and 65 are included in their respective age groups.
+
+#Write a Python program that functions as a simple calculator. The program should prompt the user to
+#input two numeric values and choose one of four arithmetic operations: addition, subtraction, multiplication, or division.
+#The program should then display the result of the operation.
+
 #Iteration Structure
 #TODO Print the even number up to 15 using for loop
 
