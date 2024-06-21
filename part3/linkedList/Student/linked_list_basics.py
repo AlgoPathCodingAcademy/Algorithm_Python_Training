@@ -26,8 +26,8 @@ node2.next = node3
 #TODO, Get the middle of the link list
 #print the value of the middle node of the linked list.
 #If there are two middle nodes, return the second middle node.
-# Example 1. 1->2->3->4->5], output: 3
-# Example 2. 1->2->3->4->5->6, output: 4
+# Example 1. 1->2->3->4->5, output: 3->4->5
+# Example 2. 1->2->3->4->5->6, output: 4->5->6
 # In our case, it should ouput 5
 # This solution uses two passes.
 # One pass to calculate the length
