@@ -13,8 +13,8 @@ class MyQueue:
         self.dummy = ListNode(float("-inf"))
         self.rear = self.dummy 
 
-    def printList(self,head):
-        current = head
+    def printList(self):
+        current = self.dummy.next
         while True:
             if current != None:
                 print(current.val)
@@ -28,36 +28,36 @@ class MyQueue:
     """
     def enqueue(self, item):
         # write your code here
-        currentNode = self.rear
-        currentNode.next = ListNode(item)
-
-        self.rear = currentNode.next
+        self.rear.next = ListNode(item)
+        self.rear = self.rear.next
 
     """
     @return: An integer
     """
     def dequeue(self):
         # write your code here
-        nextNode = self.dummy.next
-        value = -1
-        if nextNode != None:
-            value = nextNode.val
-            self.dummy.next = nextNode.next
-
-            if nextNode == self.rear:
-                self.rear = self.dummy
+        if self.dummy.next == None:
+            return -1
+        
+        value = self.dummy.next.val
+        
+        self.dummy.next = self.dummy.next.next
         return value
 
 #Test Case 1
-enqueue(1)
-enqueue(2)
-enqueue(3)
-dequeue()  #return 1
-enqueue(4)
-dequeue()  #return 2
 
+myQueue = MyQueue()
+myQueue.enqueue(1)
+myQueue.enqueue(2)
+myQueue.enqueue(3)
+print(myQueue.dequeue())  #return 1
+myQueue.enqueue(4)
+print(myQueue.dequeue())  #return 2
 
 #Test Case 2
-enqueue(10)
-dequeue() #return 10
-dequeue() #return -1
+
+myQueue = MyQueue()
+myQueue.enqueue(10)
+
+print(myQueue.dequeue()) #return 10
+print(myQueue.dequeue()) #return -1

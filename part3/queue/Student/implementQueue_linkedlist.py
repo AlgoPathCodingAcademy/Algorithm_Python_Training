@@ -13,8 +13,8 @@ class MyQueue:
         self.dummy = ListNode(float("-inf"))
         self.rear = self.dummy 
 
-    def printList(self,head):
-        current = head
+    def printList(self):
+        current = self.dummy.next
         while True:
             if current != None:
                 print(current.val)
@@ -36,15 +36,19 @@ class MyQueue:
         # write your code here
 
 #Test Case 1
-enqueue(1)
-enqueue(2)
-enqueue(3)
-dequeue()  #return 1
-enqueue(4)
-dequeue()  #return 2
 
+myQueue = MyQueue()
+myQueue.enqueue(1)
+myQueue.enqueue(2)
+myQueue.enqueue(3)
+print(myQueue.dequeue())  #return 1
+myQueue.enqueue(4)
+print(myQueue.dequeue())  #return 2
 
 #Test Case 2
-enqueue(10)
-dequeue() #return 10
-dequeue() #return -1
+
+myQueue = MyQueue()
+myQueue.enqueue(10)
+
+print(myQueue.dequeue()) #return 10
+print(myQueue.dequeue()) #return -1
