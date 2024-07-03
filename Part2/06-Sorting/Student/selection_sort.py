@@ -1,6 +1,6 @@
 list_input= [64,25,12,22,11]
 
-for i in range(len(list_input)):
+for i in range(len(list_input)-1):
     number = list_input[i]
     index = i
     #TODO why do we need to use i+1 instead of i
