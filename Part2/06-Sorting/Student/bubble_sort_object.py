@@ -27,8 +27,8 @@ def bubble_sort(arr):
         if not needSwap:
             break
 
-input_list = [7,6,5,4,3,2,1]
-bubble_sort(input_list)
-print(input_list)
+#input_list = [7,6,5,4,3,2,1]
+bubble_sort(people)
+print(people)
 
 # TODO Please change the above bubble sort algorithm to sort the Person's age in ascending order
