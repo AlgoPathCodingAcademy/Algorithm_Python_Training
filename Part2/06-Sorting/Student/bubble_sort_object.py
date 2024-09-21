@@ -9,6 +9,10 @@ people = [
     Person("Charlie", 35)
 ]
 
+for item in people:
+    print(item.name, " : ", item.age)
+
+
 # The bubble sort algorithm is given as below:
 def bubble_sort(arr):
     n = len(arr)
@@ -29,6 +33,9 @@ def bubble_sort(arr):
 
 #input_list = [7,6,5,4,3,2,1]
 bubble_sort(people)
-print(people)
+for item in people:
+    print(item.name, " : ", item.age)
+
+
 
 # TODO Please change the above bubble sort algorithm to sort the Person's age in ascending order
