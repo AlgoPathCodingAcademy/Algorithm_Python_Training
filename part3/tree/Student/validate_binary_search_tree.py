@@ -46,6 +46,6 @@ test_cases = [
 
 # Test runner
 for i, test in enumerate(test_cases, start=1):
-    root = list_to_tree(test["lst"])
+    root = create_tree_from_list(test["lst"])
     result = is_bst(root)
     print(f"Test Case {i}: {'Passed' if result == test['expected'] else 'Failed'}")
