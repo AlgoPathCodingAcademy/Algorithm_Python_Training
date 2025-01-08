@@ -6,8 +6,15 @@ class UnionFind:
         self.num_sets = 0  # Total number of disjoint sets
 
     def find(self, x):
-        # Iterative implementation of find with path compression
-        root = x
+        """
+        Find the root of the set containing x with path compression.
+
+        Parameters:
+            x (int or any hashable type): The element to find the root for.
+
+        Returns:
+            int or any hashable type: The root of the set containing x.
+        """
 
     def union(self, x, y):
         # Union the sets containing x and y by attaching rootX's tree under rootY
@@ -22,7 +29,7 @@ class UnionFind:
         # Return the size of the set containing x
 
     def add(self, x):
-        #
+        # Add a new node to the Union-Find structure
         
         
 uf = UnionFind()  # Initialize an empty Union-Find structure
