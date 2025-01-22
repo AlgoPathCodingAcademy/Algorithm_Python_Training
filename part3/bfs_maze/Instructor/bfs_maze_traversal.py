@@ -19,6 +19,7 @@ directions = [(-1,0),(1,0),(0,-1),(0,1)]
 
 # Debug Purpose
 path = {}
+path[start] = None
 
 isFound = False
 
@@ -47,12 +48,12 @@ while True:
 
 # Debug print the full path from the beginning to the end
 print("Debug:Path Hash Table:",path)
-display_path = [(end)]
+display_path = []
 while True:
+    display_path.append(end)
     pre_path = path[end]
     end = pre_path
-    display_path.append(end)
-    if end == start:
+    if end == None:
         break
 print("Debug:Show one possible shortest path:", display_path[::-1])
 

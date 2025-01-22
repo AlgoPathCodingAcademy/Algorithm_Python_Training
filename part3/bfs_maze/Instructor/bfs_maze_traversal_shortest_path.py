@@ -23,6 +23,7 @@ distance[(start)] = 0
 
 # Debug Purpose
 path = {}
+path[start] = None
 
 isFound = False
 
@@ -57,12 +58,12 @@ print("shortest path to dest", end, distance[end])
 
 # Debug print the full path from the beginning to the end
 print("Path Hash Table:",path)
-display_path = [(end)]
+display_path = []
 while True:
+    display_path.append(end)
     pre_path = path[end]
     end = pre_path
-    display_path.append(end)
-    if end == start:
+    if end == None:
         break
 print("Show one possible shortest path:", display_path[::-1])
 
