@@ -41,8 +41,9 @@ while True:
 
     row,column = to_do_list.popleft()
 
-    if (row,column) == end:
-        isFound = True
+    # Remove Early Termination
+    #if (row,column) == end:
+    #    isFound = True
     
     for dx,dy in directions:
         new_row = dx + row
