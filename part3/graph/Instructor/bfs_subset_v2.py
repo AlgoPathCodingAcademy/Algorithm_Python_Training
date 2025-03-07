@@ -1,56 +1,48 @@
-from collections import deque
+def getNeighbors(current, nums, level):
+    neighbors = []
 
-def getNeighbors(current, level, nums):
-    result = []
+    neighbors.append(current)
+    neighbors.append(tuple(list(current) + [nums[level]]))
 
-    if level == len(nums):
-        return None
-
-    list_on_ = list(current) + [nums[level]]
-    list_off_ = list(current)
-    result.append(tuple(list_off_))
-    result.append(tuple(list_on_))
-
-    return result
+    return neighbors
 
 def subsets(nums):
+    from collections import deque
     # write your code here
-    start = ()
-    queue = deque()
-    queue.append((start,0))
-    result = {}
+    level = -1 
+    start = ((), level)
 
-    visited = {}
-    visited[start] = True
+    to_do_list = deque()
+    to_do_list.append(start)
+
+    output = {}
 
     while True:
-        if len(queue) == 0:
+        if len(to_do_list) == 0:
             break
 
-        current, level = queue.popleft()
-
-        if level not in result:
-            result[level] = [[]]
+        current, level = to_do_list.popleft()
+        # collect the last layer
+        if level not in output:
+            output[level] = [list(current)]
         else:
-            result[level].append(list(current))
+            output[level].append(list(current))
 
-        neighbors = getNeighbors(current, level, nums)
+        if level == len(nums)-1:
+            continue
 
-        if neighbors != None:
-            for neighbor in neighbors:
-                queue.append((neighbor,level+1))
+        neighbors = getNeighbors(current, nums, level+1)
 
-    output = []
-    for level in result:
-        output.append(result[level])
+        # Note: Unlike normal BFS, we shouldn't use visited
+        for neighbor in neighbors:
+            to_do_list.append((neighbor, level+1))
+
+    final = []
+    for item in output[len(nums)-1]:
+        final.append(sorted(item))
+
+    return final
     
-    final_answer = []
-    outputs = sorted(output[-1])
-    for answer in outputs:
-        final_answer.append(sorted(answer))
-
-    return final_answer
-    
-lst_ = [1,2,3]
-result = subsets(lst_)
+nums = [1,2,3]
+result = subsets(nums)
 print(result)
