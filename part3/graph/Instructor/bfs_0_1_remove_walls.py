@@ -40,10 +40,8 @@ def minimumObstacles(grid):
                     path[(new_row,new_column)] = path[(row,column)] + cost
                     if grid[new_row][new_column] == 1:
                         to_do_list.append((new_row,new_column))
-                        path[(new_row,new_column)] = path[(row,column)] + 1
                     else:
                         to_do_list.appendleft((new_row,new_column))
-                        path[(new_row,new_column)] = path[(row,column)]
 
     return path[end]
     
