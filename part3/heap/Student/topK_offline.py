@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 """
-Top-K Data Structure  (Python 2 version)
+Top-K Data Structure
 ---------------------------------------
 
 Implement a container that keeps track of the k largest numbers inserted so far.
@@ -31,14 +30,7 @@ class TopK(object):
         """
         Insert *number* into the structure.
 
-        Keep only the k largest elements seen so far.
         """
-        if len(self._min_heap) < self.k:
-            heapq.heappush(self._min_heap, number)
-        else:
-            # self._min_heap[0] is the current smallest of the top-k set
-            if number > self._min_heap[0]:
-                heapq.heapreplace(self._min_heap, number)
 
     def topk(self):
         """
@@ -46,7 +38,7 @@ class TopK(object):
 
         :return: list of up to k integers, largest first
         """
-        return sorted(self._min_heap, reverse=True)
+        
 
 
 # ---------------- demo ----------------
