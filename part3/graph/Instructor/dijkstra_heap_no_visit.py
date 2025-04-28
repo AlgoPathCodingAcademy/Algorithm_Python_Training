@@ -24,7 +24,12 @@ while True:
         break
     
     current_weight,current_node = heapq.heappop(heap)
-    
+   
+    # If we've found a better path previously, skip this outdated entry
+    if current_weight > weights[current_node]:
+        continue
+
+
     for neighbor_node, neighbor_weight in graph[current_node]:
         weight = current_weight + neighbor_weight
         if weight < weights[neighbor_node]:
