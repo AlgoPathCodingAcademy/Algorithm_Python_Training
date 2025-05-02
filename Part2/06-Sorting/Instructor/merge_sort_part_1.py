@@ -1,67 +1,52 @@
-list_a = [3,5,8]
-list_b = [2,8,9,10,15]
+lst = [38,27,43,3,9,82,10]
 
-point_a = 0
-point_b = 0
-
-list_output = []
-
-#Use For loop - Method 1
-for _ in range(len(list_a) + len(list_b)):
-    if point_a == len(list_a):
-        for index in range(point_b,len(list_b)):
-            list_output.append(list_b[index])
-        break
-            
-    if point_b == len(list_b):
-        for index in range(point_a,len(list_a)):
-            list_output.append(list_a[index])
-        break
-        
-    if list_a[point_a] < list_b[point_b]:
-        list_output.append(list_a[point_a])
-        point_a = point_a + 1
-        continue
-    elif list_a[point_a] > list_b[point_b]:
-        list_output.append(list_b[point_b])
-        point_b = point_b + 1
-        continue
-    else:
-        list_output.append(list_a[point_a])
-        list_output.append(list_b[point_b])
-        point_a = point_a + 1
-        point_b = point_b + 1
-        continue
+def merge(left,right):
+    start_point_left = 0
+    start_point_right = 0
+    result = []
     
-print(list_output)
-
-#Use While loop - Method 2
-point_a = 0
-point_b = 0
-
-list_output = []
-
-while True:
-    if list_a[point_a] < list_b[point_b]:
-        list_output.append(list_a[point_a])
-        point_a = point_a + 1
-    elif list_a[point_a] > list_b[point_b]:
-        list_output.append(list_b[point_b])
-        point_b = point_b + 1
-    else:
-        list_output.append(list_a[point_a])
-        list_output.append(list_b[point_b])
-        point_a = point_a + 1
-        point_b = point_b + 1
+    if len(left) == 0:
+        return right
         
-    if point_a == len(list_a):
-        for index in range(point_b,len(list_b),1):
-            list_output.append(list_b[index])
-        break
+    if len(right) == 0:
+        return left
+    
+    while True:
+        if left[start_point_left] <= right[start_point_right]:
+            result.append(left[start_point_left])
+            start_point_left += 1
+        else:
+            result.append(right[start_point_right])
+            start_point_right += 1
+    
+        if start_point_left == len(left):
+            for index in range(start_point_right,len(right)):
+                result.append(right[index])
+            break
+                
+        if start_point_right == len(right):
+            for index in range(start_point_left,len(left)):
+                result.append(left[index])
+            break
             
-    if point_b == len(list_b):
-        for index in range(point_a,len(list_a),1):
-            list_output.append(list_a[index])
-        break
+    return result
+    
+left = [3,27,38,43]
+right = [3,10,82]
 
-print(list_output)
+result = merge(left,right)
+print("Test merge process", result)
+
+        
+def mergeSort(lst):
+    if len(lst) <= 1:
+        return lst
+        
+    sort_part_left = mergeSort(lst[:len(lst)//2])
+    sort_part_right = mergeSort(lst[len(lst)//2:])
+    
+    return merge(sort_part_left,sort_part_right)
+    
+
+output = mergeSort(lst)
+print("Test merge sort process",output)
