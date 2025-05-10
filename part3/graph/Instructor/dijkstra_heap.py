@@ -36,11 +36,10 @@ def dijkstra_shortest_path(n, adjacency_list, source, destination):
 
         # Relax edges out of 'u'
         for (v, w) in adjacency_list[u]:
-            if not visited[v]:
-                new_dist = dist_u + w
-                if new_dist < distance[v]:
-                    distance[v] = new_dist
-                    heapq.heappush(pq, (new_dist, v))
+            new_dist = dist_u + w
+            if new_dist < distance[v]:
+                distance[v] = new_dist
+                heapq.heappush(pq, (new_dist, v))
 
     # If we exit the loop without returning, destination wasn't reached
     return float('inf')
