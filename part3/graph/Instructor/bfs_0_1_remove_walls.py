@@ -20,9 +20,6 @@ def minimumObstacles(grid):
 
     path[start] = 0
 
-    visited = {}
-    visited[start] = True
-
     while True:
         row,column = to_do_list.popleft()
 
