@@ -15,6 +15,10 @@ class dataCollection:
 # corner-case tests focusing on many copies of the same number
 # ------------------------------------------------------------
 
+# This version expects `queryMin()` to return `None` when the data
+# structure is empty, instead of raising an IndexError.
+# ------------------------------------------------------------
+
 def fresh():
     return dataCollection()          # assumes your class is already imported
 
@@ -24,12 +28,7 @@ ds = fresh()
 ds.insert(4); ds.insert(4); ds.insert(4)
 assert ds.queryMin() == 4
 ds.delete(4); ds.delete(4); ds.delete(4)
-try:
-    ds.queryMin()
-except IndexError:
-    pass
-else:
-    raise AssertionError("should be empty after deleting all copies")
+assert ds.queryMin() is None, "should be empty after deleting all copies"
 
 # 1.   100 identical values
 ds = fresh()
@@ -40,12 +39,7 @@ for _ in range(99):
     ds.delete(42)
 assert ds.queryMin() == 42        # still one live copy
 ds.delete(42)                     # last copy removed
-try:
-    ds.queryMin()
-except IndexError:
-    pass
-else:
-    raise AssertionError("structure should be empty")
+assert ds.queryMin() is None, "structure should be empty"
 
 # 2. duplicates of two different numbers, min copies deleted first
 ds = fresh()
@@ -87,11 +81,6 @@ for k in range(1, N + 1):
     if k < N:
         assert ds.queryMin() == k + 1
     else:
-        try:
-            ds.queryMin()
-        except IndexError:
-            pass
-        else:
-            raise AssertionError("should be empty after final deletions")
+        assert ds.queryMin() is None, "should be empty after final deletions"
 
 print("all corner-case duplicate tests passed ✔")
