@@ -1,35 +1,49 @@
 import heapq
 class dataCollection:
     def __init__(self):
-        self.heap = []
-        self.hashTable = {}
+        self.hash_ = {}
+        self.heap_ = []
+
         
     def delete(self,x):
-        self.hashTable[x] -= 1
+        self.hash_[x] -= 1
+        if self.hash_[x] == 0:
+            del self.hash_[x]
         
     def insert(self,x):
-        if x not in self.hashTable:
-            self.hashTable[x] = 1
-            heapq.heappush(self.heap,x)
+        if x not in self.hash_:
+            self.hash_[x] = 1
         else:
-            self.hashTable[x] += 1
+            self.hash_[x] += 1
+            
+        heapq.heappush(self.heap_,x)
 
     def queryMin(self):
-        while True:
-            first_value = self.heap[0]
-            if first_value in self.hashTable:
-                if self.hashTable[first_value] == 0:
-                    self.hashTable.pop(first_value)
-                    heapq.heappop(self.heap)
-                else:
-                    break
-            else:
-                break
         
-        return self.heap[0]
+        while True:
+            # check top of the heap
+            if len(self.heap_) == 0:
+                return None
+            
+            item = self.heap_[0]
+            
+            # Because item are only deleted in delete function and heaqp is not 
+            # aware of this
+            if item not in self.hash_:
+                # deleted in the hash_ table already
+                heapq.heappop(self.heap_)
+            else:
+                return item
+                
+                
+
             
 # ------------------------------------------------------------
 # corner-case tests focusing on many copies of the same number
+# ------------------------------------------------------------
+
+# This version expects `queryMin()` to return `None` when the data
+# structure is empty, instead of raising an IndexError.
 # ------------------------------------------------------------
 
 def fresh():
@@ -41,12 +55,7 @@ ds = fresh()
 ds.insert(4); ds.insert(4); ds.insert(4)
 assert ds.queryMin() == 4
 ds.delete(4); ds.delete(4); ds.delete(4)
-try:
-    ds.queryMin()
-except IndexError:
-    pass
-else:
-    raise AssertionError("should be empty after deleting all copies")
+assert ds.queryMin() is None, "should be empty after deleting all copies"
 
 # 1.   100 identical values
 ds = fresh()
@@ -57,12 +66,7 @@ for _ in range(99):
     ds.delete(42)
 assert ds.queryMin() == 42        # still one live copy
 ds.delete(42)                     # last copy removed
-try:
-    ds.queryMin()
-except IndexError:
-    pass
-else:
-    raise AssertionError("structure should be empty")
+assert ds.queryMin() is None, "structure should be empty"
 
 # 2. duplicates of two different numbers, min copies deleted first
 ds = fresh()
@@ -104,12 +108,6 @@ for k in range(1, N + 1):
     if k < N:
         assert ds.queryMin() == k + 1
     else:
-        try:
-            ds.queryMin()
-        except IndexError:
-            pass
-        else:
-            raise AssertionError("should be empty after final deletions")
+        assert ds.queryMin() is None, "should be empty after final deletions"
 
 print("all corner-case duplicate tests passed ✔")
-
