@@ -1,4 +1,5 @@
 import heapq
+
 class dataCollection:
     def __init__(self):
         self.hash_ = {}
