@@ -24,6 +24,8 @@ def last_position(nums, target):
     if nums[start] == target:
         return start
 
+    return -1
+
 # ── test-driver ────────────────────────────────────────────────
 def run_tests():
     """Run a battery of deterministic & random tests; print pass/fail."""
