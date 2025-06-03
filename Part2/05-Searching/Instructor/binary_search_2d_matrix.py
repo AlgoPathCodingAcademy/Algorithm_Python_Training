@@ -2,24 +2,45 @@
 #  Binary-search helpers (no class wrapper)
 # ──────────────────────────────────────────────────────────────
 def binary_search_row(matrix, target):
-    start, end = 0, len(matrix) - 1
-    while start + 1 < end:
-        mid = (start + end) // 2
-        if matrix[mid][0] > target:
-            end = mid
+    start = 0
+    end = len(matrix) - 1
+
+    while True:
+        if start + 1 >= end:
+            break
+
+        middle = (start + end)//2
+
+        if matrix[middle][0] > target:
+            end = middle
         else:
-            start = mid
+            start = middle
+
     return start, end
 
-def binary_search_column(matrix, row_idx, target):
-    start, end = 0, len(matrix[0]) - 1
-    while start + 1 < end:
-        mid = (start + end) // 2
-        if matrix[row_idx][mid] > target:
-            end = mid
+
+def binary_search_column(matrix,index, target):
+    start = 0
+    end = len(matrix[0]) - 1
+
+    while True:
+        if start + 1 >= end:
+            break
+
+        middle = (start + end)//2
+
+        if matrix[index][middle] > target:
+            end = middle
         else:
-            start = mid
-    return matrix[row_idx][start] == target or matrix[row_idx][end] == target
+            start = middle
+
+    if matrix[index][start] == target:
+        return True
+
+    if matrix[index][end] == target:
+        return True
+
+    return False
 
 def search_matrix(matrix, target):
     start, end = binary_search_row(matrix, target)
