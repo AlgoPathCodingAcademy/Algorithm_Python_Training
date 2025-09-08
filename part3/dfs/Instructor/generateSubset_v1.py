@@ -1,13 +1,13 @@
 nums = [1,2,3]
 result = []
 
-def generateSubset(path,level):
+def generateSubset(current,level):
     if level == len(nums):
-        result.append(path)
+        result.append(current)
         return
 
-    generateSubset(path,level+1)
-    generateSubset(path + [nums[level]],level+1)
+    generateSubset(current,level+1)
+    generateSubset(current + [nums[level]],level+1)
     
 generateSubset([],0)
 
