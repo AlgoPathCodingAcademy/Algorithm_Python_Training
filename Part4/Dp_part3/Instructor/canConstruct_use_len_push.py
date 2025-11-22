@@ -1,5 +1,5 @@
 def canConstruct(target, wordBank, dp):
-    for i in range(len(target)):
+    for i in range(len(target)+1):
         for item in wordBank:
             if dp[i]:
                 if target[i:i+len(item)] == item:
