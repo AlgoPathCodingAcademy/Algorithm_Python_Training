@@ -1,4 +1,4 @@
-iweights = [2, 3, 5, 7]
+weights = [2, 3, 5, 7]
 capacity = 11
 
 dp = [[0]*(capacity+1) for _ in range(len(weights) + 1)]
