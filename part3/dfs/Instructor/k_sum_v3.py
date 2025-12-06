@@ -15,12 +15,10 @@ def getNeighbors(current, nums,level):
 def dfs(total_sum, path, current, nums, level, k, target):
     if total_sum > target:
         return
-    
-    if total_sum == target:
-        print("Sum", path)
-        return
-    
+
     if level == k:
+        if sum(path) == target:
+            print(path)
         return
     
     neighbors = getNeighbors(current, nums,level)
