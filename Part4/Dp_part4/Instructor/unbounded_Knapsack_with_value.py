@@ -1,5 +1,5 @@
-weight = [2,3,4]
-value = [3,7,10]
+weight = [2,3]
+value = [4,5]
 
 cap = 10
 
