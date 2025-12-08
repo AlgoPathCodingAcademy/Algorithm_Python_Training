@@ -53,18 +53,32 @@
     }
     .cheat-card h3 {
       font-size: 1rem;
-      margin: 0 0 0.4rem;
+      margin: 0 0 0.35rem;
     }
     .cheat-card h4 {
       font-size: 0.9rem;
-      margin: 0.5rem 0 0.2rem;
+      margin: 0.5rem 0 0.15rem;
     }
     .cheat-card ul {
       margin: 0.1rem 0 0.4rem 1.1rem;
       padding-left: 0;
     }
     .cheat-card li {
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.25rem;
+    }
+    .laststep {
+      color: #9ca3af;
+      font-size: 0.8rem;
+      margin: 0.1rem 0 0.2rem;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      background:#020617;
+      border-radius:999px;
+      border:1px solid #475569;
+      padding:0.05rem 0.35rem;
+      color:#e5e7eb;
     }
 
 </style>
@@ -83,7 +97,7 @@
       <div class="tree-root">
 
         <div class="category">
-          <div class="cat-title">1. Sequence-based DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[i] / dp[i][j] = best result related to positions in a sequence.</span></div>
+          <div class="cat-title">1. Sequence-based DP</div>
           <div class="cat-note">DP indexed by sequence positions.</div>
           <ul class="cat-list">
             <li>
@@ -116,7 +130,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">2. Grid / Coordinate DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[r][c] = best/valid value at cell (r,c).</span></div>
+          <div class="cat-title">2. Grid / Coordinate DP</div>
           <div class="cat-note">DP on 2D coordinates.</div>
           <ul class="cat-list">
             <li>
@@ -129,7 +143,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">3. Knapsack DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[w] or dp[i][w] = best value with capacity w.</span></div>
+          <div class="cat-title">3. Knapsack DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">0/1 Knapsack</span>
@@ -141,7 +155,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">4. Interval / Cutting DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[l][r] or dp[n] = best result for interval or cut.</span></div>
+          <div class="cat-title">4. Interval / Cutting DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">Integer Break</span>
@@ -153,7 +167,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">5. Tree / Graph DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[u] or dp[u][state] = best result for subtree rooted at u.</span></div>
+          <div class="cat-title">5. Tree / Graph DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">Subtree DP</span>
@@ -165,7 +179,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">6. Bitmask DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[mask] or dp[mask][i] = best using subset mask.</span></div>
+          <div class="cat-title">6. Bitmask DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">TSP</span>
@@ -176,7 +190,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">7. Digit DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[pos][tight][sum/...]= count/validity over digit positions.</span></div>
+          <div class="cat-title">7. Digit DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">Count ≤ N</span>
@@ -187,7 +201,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">8. Counting DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[state] = number of valid ways for this state.</span></div>
+          <div class="cat-title">8. Counting DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">Ways Counting</span>
@@ -198,7 +212,7 @@
         </div>
 
         <div class="category">
-          <div class="cat-title">9. State-Machine / Game DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[state] = best/win/lose for a machine/game position.</span></div>
+          <div class="cat-title">9. State-Machine / Game DP</div>
           <ul class="cat-list">
             <li>
               <span class="pill">Grundy</span>
@@ -214,137 +228,135 @@
 
   
     <section class="cheatsheet">
-      <h2>DP State & Transition Cheat Sheet</h2>
-      <p class="cheat-note">For each category, a classic problem, state definition, and transition template.</p>
+      <h2>DP State &amp; Last-step Method Cheat Sheet</h2>
+      <p class="cheat-note">
+        For each category: typical state definition, index meaning, transition template, and how easy it is to use the “last-step” method.
+      </p>
 
       <div class="cheat-card">
         <h3>1. Sequence-based DP</h3>
+        <p class="laststep"><strong>Last-step method:</strong> ranges from Easy to Hard depending on subcategory.</p>
 
         <h4>1.1 Prefix DP — Word Break</h4>
+        <p class="laststep"><strong>Last-step:</strong> Very Easy — perfect prefix structure.</p>
         <ul>
-          <li><strong>State:</strong> <code>dp[i]</code> — can we segment the prefix <code>s[0..i-1]</code> into words?</li>
-          <li><strong>Indices:</strong> <code>i</code> = length of prefix; <code>j</code> = split position.</li>
-          <li><strong>Transition:</strong> <code>dp[i] = OR over j &lt; i of ( dp[j] &amp;&amp; s[j..i-1] in dict )</code></li>
+          <li><strong>State:</strong> <code>dp[i]</code> — can we segment prefix <code>s[0..i-1]</code> into words?</li>
+          <li><strong>Indices:</strong> <code>i</code> = prefix length; <code>j</code> = split position.</li>
+          <li><strong>Transition:</strong> <code>dp[i] = OR over 0 ≤ j &lt; i of ( dp[j] &amp;&amp; s[j..i-1] in dict )</code></li>
         </ul>
 
         <h4>1.2 Subsequence DP — Longest Increasing Subsequence (LIS)</h4>
+        <p class="laststep"><strong>Last-step:</strong> Medium — must check all <code>j &lt; i</code>.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[i]</code> — length of LIS that ends at index <code>i</code>.</li>
           <li><strong>Indices:</strong> <code>i</code> = last chosen element; <code>j</code> = previous element in the subsequence.</li>
-          <li><strong>Transition:</strong> <code>dp[i] = 1 + max(dp[j]) for all j &lt; i with a[j] &lt; a[i]; if none, dp[i] = 1</code></li>
+          <li><strong>Transition:</strong> <code>dp[i] = 1 + max(dp[j])</code> for all <code>j &lt; i</code> with <code>a[j] &lt; a[i]</code>; if none, <code>dp[i] = 1</code>.</li>
         </ul>
 
         <h4>1.3 Substring / Interval DP — Palindromic Substring</h4>
+        <p class="laststep"><strong>Last-step:</strong> Hard — cannot use prefix <code>i-1</code>; depends on inner interval.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[i][j]</code> — is substring <code>s[i..j]</code> a palindrome?</li>
           <li><strong>Indices:</strong> <code>i</code> = left index; <code>j</code> = right index.</li>
-          <li><strong>Transition:</strong> <code>dp[i][j] = (s[i] == s[j]) &amp;&amp; ( j - i &lt;= 2 || dp[i+1][j-1] )</code></li>
+          <li><strong>Transition:</strong> <code>dp[i][j] = (s[i] == s[j]) &amp;&amp; ( j - i &lt;= 2 || dp[i+1][j-1] )</code>.</li>
         </ul>
 
         <h4>1.4 Other Sequence DP — Maximum Subarray (Kadane)</h4>
+        <p class="laststep"><strong>Last-step:</strong> Easy — prefix-like extension.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[i]</code> — maximum subarray sum that ends at index <code>i</code>.</li>
           <li><strong>Index:</strong> <code>i</code> = last element of the subarray.</li>
-          <li><strong>Transition:</strong> <code>dp[i] = max( a[i], dp[i-1] + a[i] )</code></li>
+          <li><strong>Transition:</strong> <code>dp[i] = max( a[i], dp[i-1] + a[i] )</code>.</li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>2. Grid / Coordinate DP — Unique Paths with Obstacles</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Easy — always from top/left neighbours.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[r][c]</code> — number of ways to reach cell <code>(r, c)</code>.</li>
           <li><strong>Indices:</strong> <code>r</code> = row index; <code>c</code> = column index.</li>
-          <li><strong>Transition:</strong> if <code>grid[r][c]</code> is blocked: <code>dp[r][c] = 0</code><br>
-              otherwise: <code>dp[r][c] = (r &gt; 0 ? dp[r-1][c] : 0) + (c &gt; 0 ? dp[r][c-1] : 0)</code></li>
+          <li><strong>Transition:</strong> if cell is blocked: <code>dp[r][c] = 0</code>.<br>
+            Otherwise: <code>dp[r][c] = (r &gt; 0 ? dp[r-1][c] : 0) + (c &gt; 0 ? dp[r][c-1] : 0)</code>.
+          </li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>3. Knapsack DP — 0/1 Knapsack</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Very Easy — classic pick/skip decision.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[i][w]</code> — maximum value using the first <code>i</code> items with capacity <code>w</code>.</li>
           <li><strong>Indices:</strong> <code>i</code> = number of items considered; <code>w</code> = current capacity.</li>
-          <li><strong>Transition:</strong> 
-            <code>
-            dp[i][w] = max( dp[i-1][w], dp[i-1][w - weight[i]] + value[i] ) if w &gt;= weight[i]<br>
-            dp[i][w] = dp[i-1][w] otherwise
-            </code>
+          <li><strong>Transition:</strong><br>
+            If <code>w ≥ weight[i]</code>:<br>
+            <code>dp[i][w] = max( dp[i-1][w], dp[i-1][w - weight[i]] + value[i] )</code>.<br>
+            Else: <code>dp[i][w] = dp[i-1][w]</code>.
           </li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>4. Interval / Cutting DP — Integer Break</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Impossible in prefix form — must try all cut positions.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[n]</code> — maximum product by breaking integer <code>n</code> into at least two parts.</li>
-          <li><strong>Indices:</strong> <code>n</code> = current integer; <code>j</code> = first cut size.</li>
-          <li><strong>Transition:</strong> 
-            <code>
-            dp[n] = max over 1 &lt;= j &lt; n of max( j * (n - j), j * dp[n - j] )
-            </code>
-          </li>
+          <li><strong>Indices:</strong> <code>n</code> = current integer; <code>j</code> = size of the first piece.</li>
+          <li><strong>Transition:</strong> <code>dp[n] = max over 1 ≤ j &lt; n of max( j × (n - j), j × dp[n - j] )</code>.</li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>5. Tree / Graph DP — Tree Independent Set</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Medium — works with DFS/post-order, not with prefix indices.</p>
         <ul>
-          <li><strong>State:</strong> <code>dp[u][0]</code>, <code>dp[u][1]</code> — best value for subtree rooted at <code>u</code>:
+          <li><strong>State:</strong> <code>dp[u][0]</code>, <code>dp[u][1]</code> — best value for subtree rooted at node <code>u</code>:
             <code>[0]</code> = u not taken, <code>[1]</code> = u taken.</li>
-          <li><strong>Indices:</strong> <code>u</code> = current node; iterate children <code>v</code>.</li>
+          <li><strong>Indices:</strong> <code>u</code> = node; children <code>v</code> come from the tree edges.</li>
           <li><strong>Transition:</strong><br>
-            If u is taken: <code>dp[u][1] = 1 + sum over children v of dp[v][0]</code><br>
-            If u is not taken: <code>dp[u][0] = sum over children v of max(dp[v][0], dp[v][1])</code>
+            If u is taken: <code>dp[u][1] = 1 + Σ dp[v][0]</code> over children <code>v</code>.<br>
+            If u is not taken: <code>dp[u][0] = Σ max( dp[v][0], dp[v][1] )</code> over children <code>v</code>.
           </li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>6. Bitmask DP — Traveling Salesman Problem (TSP)</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Medium–Hard — last step is “which node is last in subset”.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[mask][i]</code> — minimum cost to visit all nodes in <code>mask</code> and end at node <code>i</code>.</li>
           <li><strong>Indices:</strong> <code>mask</code> = subset of visited nodes; <code>i</code> = last node.</li>
-          <li><strong>Transition:</strong> 
-            <code>
-            dp[mask][i] = min over j in mask, j != i of ( dp[mask \ {i}][j] + dist[j][i] )
-            </code>
-          </li>
+          <li><strong>Transition:</strong> <code>dp[mask][i] = min over j in mask, j ≠ i of ( dp[mask \ {i}][j] + dist[j][i] )</code>.</li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>7. Digit DP — Count Numbers ≤ N with Constraints</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Hard — uses automaton-like transitions, not simple prefixes.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[pos][tight][state]</code> — number of valid ways from digit position <code>pos</code> onward.</li>
-          <li><strong>Indices:</strong> <code>pos</code> = current digit index; <code>tight</code> = whether we are bounded by the prefix of N; <code>state</code> = extra info (e.g. sum, leading zero, used digits).</li>
-          <li><strong>Transition:</strong> 
-            <code>
-            dp[pos][tight][state] = sum over allowed next digits d of dp[nextPos][nextTight][nextState]
-            </code>
-          </li>
+          <li><strong>Indices:</strong> <code>pos</code> = digit index; <code>tight</code> = whether prefix equals N; <code>state</code> = extra info (digit sum, used digits, etc.).</li>
+          <li><strong>Transition:</strong> <code>dp[pos][tight][state] = Σ dp[nextPos][nextTight][nextState]</code> over allowed digits d.</li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>8. Counting DP — Ways to Climb Stairs</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Medium — often natural but needs correct combinational interpretation.</p>
         <ul>
           <li><strong>State:</strong> <code>dp[i]</code> — number of ways to reach step <code>i</code>.</li>
           <li><strong>Index:</strong> <code>i</code> = current step index.</li>
-          <li><strong>Transition:</strong> <code>dp[i] = dp[i-1] + dp[i-2]</code> (if you can climb 1 or 2 steps at a time).</li>
+          <li><strong>Transition:</strong> <code>dp[i] = dp[i-1] + dp[i-2]</code> (for 1-step or 2-step moves).</li>
         </ul>
       </div>
 
       <div class="cheat-card">
         <h3>9. State-Machine / Game DP — Generic Game DP</h3>
+        <p class="laststep"><strong>Last-step method:</strong> Hard — depends on game graph, not on linear position.</p>
         <ul>
-          <li><strong>State:</strong> <code>dp[state]</code> — is this game state winning or losing for the current player?</li>
+          <li><strong>State:</strong> <code>dp[state]</code> — is this game state winning (true) or losing (false) for the current player?</li>
           <li><strong>Index:</strong> <code>state</code> encodes the full game position.</li>
-          <li><strong>Transition (normal play):</strong> 
-            <code>
-            dp[state] = OR over moves m of ( NOT dp[next_state(m)] )
-            </code>
-            — a state is winning if there exists a move to a losing state.
-          </li>
+          <li><strong>Transition (normal play):</strong> <code>dp[state] = OR over moves m of ( NOT dp[next_state(m)] )</code> — a state is winning if there exists a move to a losing state.</li>
         </ul>
       </div>
     </section>
