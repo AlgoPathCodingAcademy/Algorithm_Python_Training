@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Programming Taxonomy Mind Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { margin:0; font-family: system-ui; background:#0f172a; color:#e5e7eb; }
+    .page { max-width:1100px; margin:2rem auto; padding:1rem; }
+    .hero { text-align:center; margin-bottom:1.5rem; }
+    .hero-title { font-size:1.9rem; font-weight:700; }
+    .mindmap-card {
+      background:#111827; border-radius:18px; padding:1.3rem;
+      border:1px solid rgba(148,163,184,0.25);
+    }
+    .mindmap-root { text-align:center; margin-bottom:1rem; }
+    .root-badge {
+      display:inline-block; padding:0.4rem 0.9rem; border-radius:20px;
+      background:#1d4ed8; color:white; font-weight:600;
+    }
+    .tree-root { margin-left:0.4rem; border-left:1px dashed rgba(148,163,184,0.4); padding-left:0.8rem; }
+    .category { margin-top:1rem; }
+    .cat-title { font-weight:600; font-size:1rem; }
+    .cat-note { font-size:0.8rem; color:#9ca3af; margin-bottom:0.3rem; }
+    .cat-list { list-style:none; margin:0; padding-left:1rem; border-left:1px dashed rgba(148,163,184,0.3); }
+    .cat-list li { margin:0.3rem 0; }
+    .pill { 
+      display:inline-block; background:#1e293b; border:1px solid #475569;
+      padding:0.15rem 0.55rem; border-radius:999px; margin:0.12rem;
+      font-size:0.78rem; color:#cbd5e1;
+    }
+  
+    .cheatsheet {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      padding: 0 1rem 2.5rem;
+      font-size: 0.88rem;
+    }
+    .cheatsheet h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .cheat-note {
+      color: #9ca3af;
+      margin-bottom: 0.9rem;
+    }
+    .cheat-card {
+      background: #020617;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.35);
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.9rem;
+    }
+    .cheat-card h3 {
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
+    }
+    .cheat-card h4 {
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0.2rem;
+    }
+    .cheat-card ul {
+      margin: 0.1rem 0 0.4rem 1.1rem;
+      padding-left: 0;
+    }
+    .cheat-card li {
+      margin-bottom: 0.2rem;
+    }
+
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-title">Dynamic Programming — Taxonomy Mind Map</div>
+    </header>
+
+    <section class="mindmap-card">
+      <div class="mindmap-root">
+        <div class="root-badge">Dynamic Programming (DP)</div>
+      </div>
+
+      <div class="tree-root">
+
+        <div class="category">
+          <div class="cat-title">1. Sequence-based DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[i] / dp[i][j] = best result related to positions in a sequence.</span></div>
+          <div class="cat-note">DP indexed by sequence positions.</div>
+          <ul class="cat-list">
+            <li>
+              <strong>1.1 Prefix DP:</strong>
+              <span class="pill">Word Break</span>
+              <span class="pill">Edit Distance</span>
+              <span class="pill">House Robber</span>
+              <span class="pill">Paint House</span>
+              <span class="pill">Stock Trading DP</span>
+            </li>
+            <li>
+              <strong>1.2 Subsequence DP:</strong>
+              <span class="pill">LIS / LDS</span>
+              <span class="pill">Max Sum Increasing Subsequence</span>
+              <span class="pill">Subsequence Counting</span>
+            </li>
+            <li>
+              <strong>1.3 Substring / Interval DP:</strong>
+              <span class="pill">Palindromic Substring</span>
+              <span class="pill">Burst Balloons</span>
+              <span class="pill">Matrix Chain Multiplication</span>
+              <span class="pill">Stone Merging</span>
+            </li>
+            <li>
+              <strong>1.4 Other Sequence DP:</strong>
+              <span class="pill">Kadane</span>
+              <span class="pill">Sequential Transitions</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">2. Grid / Coordinate DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[r][c] = best/valid value at cell (r,c).</span></div>
+          <div class="cat-note">DP on 2D coordinates.</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Minimum Path Sum</span>
+              <span class="pill">Unique Paths</span>
+              <span class="pill">Obstacles Grid</span>
+              <span class="pill">Chessboard DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">3. Knapsack DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[w] or dp[i][w] = best value with capacity w.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">0/1 Knapsack</span>
+              <span class="pill">Unbounded Knapsack</span>
+              <span class="pill">Multi-Knapsack</span>
+              <span class="pill">Combination vs Permutation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">4. Interval / Cutting DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[l][r] or dp[n] = best result for interval or cut.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Integer Break</span>
+              <span class="pill">Rod Cutting</span>
+              <span class="pill">Cutting Sticks</span>
+              <span class="pill">Optimal Partitions</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">5. Tree / Graph DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[u] or dp[u][state] = best result for subtree rooted at u.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Subtree DP</span>
+              <span class="pill">Tree Diameter</span>
+              <span class="pill">DAG DP</span>
+              <span class="pill">Vertex Cover</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">6. Bitmask DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[mask] or dp[mask][i] = best using subset mask.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">TSP</span>
+              <span class="pill">Assignment</span>
+              <span class="pill">Subset DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">7. Digit DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[pos][tight][sum/...]= count/validity over digit positions.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Count ≤ N</span>
+              <span class="pill">Digit Sum Rules</span>
+              <span class="pill">No Repeated Digits</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">8. Counting DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[state] = number of valid ways for this state.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Ways Counting</span>
+              <span class="pill">Pattern Counting</span>
+              <span class="pill">Lexicographic DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="cat-title">9. State-Machine / Game DP<br><span style='font-size:0.8rem;color:#9ca3af;'>State: dp[state] = best/win/lose for a machine/game position.</span></div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Grundy</span>
+              <span class="pill">Nim</span>
+              <span class="pill">Multi-state Stock DP</span>
+              <span class="pill">Finite-state DP</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  
+    <section class="cheatsheet">
+      <h2>DP State & Transition Cheat Sheet</h2>
+      <p class="cheat-note">For each category, a classic problem, state definition, and transition template.</p>
+
+      <div class="cheat-card">
+        <h3>1. Sequence-based DP</h3>
+
+        <h4>1.1 Prefix DP — Word Break</h4>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i]</code> — can we segment the prefix <code>s[0..i-1]</code> into words?</li>
+          <li><strong>Indices:</strong> <code>i</code> = length of prefix; <code>j</code> = split position.</li>
+          <li><strong>Transition:</strong> <code>dp[i] = OR over j &lt; i of ( dp[j] &amp;&amp; s[j..i-1] in dict )</code></li>
+        </ul>
+
+        <h4>1.2 Subsequence DP — Longest Increasing Subsequence (LIS)</h4>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i]</code> — length of LIS that ends at index <code>i</code>.</li>
+          <li><strong>Indices:</strong> <code>i</code> = last chosen element; <code>j</code> = previous element in the subsequence.</li>
+          <li><strong>Transition:</strong> <code>dp[i] = 1 + max(dp[j]) for all j &lt; i with a[j] &lt; a[i]; if none, dp[i] = 1</code></li>
+        </ul>
+
+        <h4>1.3 Substring / Interval DP — Palindromic Substring</h4>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i][j]</code> — is substring <code>s[i..j]</code> a palindrome?</li>
+          <li><strong>Indices:</strong> <code>i</code> = left index; <code>j</code> = right index.</li>
+          <li><strong>Transition:</strong> <code>dp[i][j] = (s[i] == s[j]) &amp;&amp; ( j - i &lt;= 2 || dp[i+1][j-1] )</code></li>
+        </ul>
+
+        <h4>1.4 Other Sequence DP — Maximum Subarray (Kadane)</h4>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i]</code> — maximum subarray sum that ends at index <code>i</code>.</li>
+          <li><strong>Index:</strong> <code>i</code> = last element of the subarray.</li>
+          <li><strong>Transition:</strong> <code>dp[i] = max( a[i], dp[i-1] + a[i] )</code></li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>2. Grid / Coordinate DP — Unique Paths with Obstacles</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[r][c]</code> — number of ways to reach cell <code>(r, c)</code>.</li>
+          <li><strong>Indices:</strong> <code>r</code> = row index; <code>c</code> = column index.</li>
+          <li><strong>Transition:</strong> if <code>grid[r][c]</code> is blocked: <code>dp[r][c] = 0</code><br>
+              otherwise: <code>dp[r][c] = (r &gt; 0 ? dp[r-1][c] : 0) + (c &gt; 0 ? dp[r][c-1] : 0)</code></li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>3. Knapsack DP — 0/1 Knapsack</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i][w]</code> — maximum value using the first <code>i</code> items with capacity <code>w</code>.</li>
+          <li><strong>Indices:</strong> <code>i</code> = number of items considered; <code>w</code> = current capacity.</li>
+          <li><strong>Transition:</strong> 
+            <code>
+            dp[i][w] = max( dp[i-1][w], dp[i-1][w - weight[i]] + value[i] ) if w &gt;= weight[i]<br>
+            dp[i][w] = dp[i-1][w] otherwise
+            </code>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>4. Interval / Cutting DP — Integer Break</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[n]</code> — maximum product by breaking integer <code>n</code> into at least two parts.</li>
+          <li><strong>Indices:</strong> <code>n</code> = current integer; <code>j</code> = first cut size.</li>
+          <li><strong>Transition:</strong> 
+            <code>
+            dp[n] = max over 1 &lt;= j &lt; n of max( j * (n - j), j * dp[n - j] )
+            </code>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>5. Tree / Graph DP — Tree Independent Set</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[u][0]</code>, <code>dp[u][1]</code> — best value for subtree rooted at <code>u</code>:
+            <code>[0]</code> = u not taken, <code>[1]</code> = u taken.</li>
+          <li><strong>Indices:</strong> <code>u</code> = current node; iterate children <code>v</code>.</li>
+          <li><strong>Transition:</strong><br>
+            If u is taken: <code>dp[u][1] = 1 + sum over children v of dp[v][0]</code><br>
+            If u is not taken: <code>dp[u][0] = sum over children v of max(dp[v][0], dp[v][1])</code>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>6. Bitmask DP — Traveling Salesman Problem (TSP)</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[mask][i]</code> — minimum cost to visit all nodes in <code>mask</code> and end at node <code>i</code>.</li>
+          <li><strong>Indices:</strong> <code>mask</code> = subset of visited nodes; <code>i</code> = last node.</li>
+          <li><strong>Transition:</strong> 
+            <code>
+            dp[mask][i] = min over j in mask, j != i of ( dp[mask \ {i}][j] + dist[j][i] )
+            </code>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>7. Digit DP — Count Numbers ≤ N with Constraints</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[pos][tight][state]</code> — number of valid ways from digit position <code>pos</code> onward.</li>
+          <li><strong>Indices:</strong> <code>pos</code> = current digit index; <code>tight</code> = whether we are bounded by the prefix of N; <code>state</code> = extra info (e.g. sum, leading zero, used digits).</li>
+          <li><strong>Transition:</strong> 
+            <code>
+            dp[pos][tight][state] = sum over allowed next digits d of dp[nextPos][nextTight][nextState]
+            </code>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>8. Counting DP — Ways to Climb Stairs</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[i]</code> — number of ways to reach step <code>i</code>.</li>
+          <li><strong>Index:</strong> <code>i</code> = current step index.</li>
+          <li><strong>Transition:</strong> <code>dp[i] = dp[i-1] + dp[i-2]</code> (if you can climb 1 or 2 steps at a time).</li>
+        </ul>
+      </div>
+
+      <div class="cheat-card">
+        <h3>9. State-Machine / Game DP — Generic Game DP</h3>
+        <ul>
+          <li><strong>State:</strong> <code>dp[state]</code> — is this game state winning or losing for the current player?</li>
+          <li><strong>Index:</strong> <code>state</code> encodes the full game position.</li>
+          <li><strong>Transition (normal play):</strong> 
+            <code>
+            dp[state] = OR over moves m of ( NOT dp[next_state(m)] )
+            </code>
+            — a state is winning if there exists a move to a losing state.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
