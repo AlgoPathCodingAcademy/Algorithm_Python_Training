@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Programming — Taxonomy Mind Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { margin:0; font-family: system-ui; background:#0f172a; color:#e5e7eb; }
+    .page { max-width:1100px; margin:2rem auto; padding:1rem; }
+    .hero { text-align:center; margin-bottom:1.5rem; }
+    .hero-title { font-size:1.9rem; font-weight:700; }
+    .mindmap-card {
+      background:#111827; border-radius:18px; padding:1.3rem;
+      border:1px solid rgba(148,163,184,0.25);
+    }
+    .mindmap-root { text-align:center; margin-bottom:1rem; }
+    .root-badge {
+      display:inline-block; padding:0.4rem 0.9rem; border-radius:20px;
+      background:#1d4ed8; color:white; font-weight:600;
+    }
+    .tree-root { margin-left:0.4rem; border-left:1px dashed rgba(148,163,184,0.4); padding-left:0.8rem; }
+    .category { margin-top:1rem; }
+    .cat-title { font-weight:600; font-size:1rem; }
+    .cat-note { font-size:0.8rem; color:#9ca3af; margin-bottom:0.3rem; }
+    .cat-list { list-style:none; margin:0; padding-left:1rem; border-left:1px dashed rgba(148,163,184,0.3); }
+    .cat-list li { margin:0.3rem 0; }
+    .pill { 
+      display:inline-block; background:#1e293b; border:1px solid #475569;
+      padding:0.15rem 0.55rem; border-radius:999px; margin:0.12rem;
+      font-size:0.78rem; color:#cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-title">Dynamic Programming — Taxonomy Mind Map</div>
+    </header>
+
+    <section class="mindmap-card">
+      <div class="mindmap-root">
+        <div class="root-badge">Dynamic Programming (DP)</div>
+      </div>
+
+      <div class="tree-root">
+
+        <!-- PREFIX DP -->
+        <div class="category">
+          <div class="cat-title">1. Prefix DP (1D)</div>
+          <div class="cat-note">DP on prefixes of a sequence without cross-element comparison.</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Word Break</span>
+              <span class="pill">House Robber</span>
+              <span class="pill">Paint House</span>
+              <span class="pill">Stock Trading (1-state)</span>
+              <span class="pill">Climbing Stairs</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- SUBSEQUENCE DP -->
+        <div class="category">
+          <div class="cat-title">2. Subsequence DP (Comparison-based Prefix DP)</div>
+          <div class="cat-note">DP where decisions come from using or skipping elements or comparing characters.</div>
+          <ul class="cat-list">
+            <li><strong>2.1 1D Subsequence DP</strong></li>
+            <ul class="cat-list">
+              <li>
+                <span class="pill">LIS</span>
+                <span class="pill">LDS</span>
+                <span class="pill">MSIS (Max Sum Increasing Subsequence)</span>
+              </li>
+            </ul>
+
+            <li><strong>2.2 2D Subsequence DP</strong></li>
+            <ul class="cat-list">
+              <li>
+                <span class="pill">LCS (Longest Common Subsequence)</span>
+                <span class="pill">Edit Distance</span>
+                <span class="pill">Subsequence Counting</span>
+                <span class="pill">Pattern Matching DP</span>
+              </li>
+            </ul>
+          </ul>
+        </div>
+
+        <!-- INTERVAL DP -->
+        <div class="category">
+          <div class="cat-title">3. Interval / Cutting DP</div>
+          <div class="cat-note">DP on substrings or intervals using partition points.</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Burst Balloons</span>
+              <span class="pill">Matrix Chain Multiplication</span>
+              <span class="pill">Stone Merging</span>
+              <span class="pill">Integer Break</span>
+              <span class="pill">Rod Cutting</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- GRID DP -->
+        <div class="category">
+          <div class="cat-title">4. Grid / Coordinate DP</div>
+          <div class="cat-note">DP based on movement across coordinates.</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Unique Paths</span>
+              <span class="pill">Min Path Sum</span>
+              <span class="pill">Obstacles Grid</span>
+              <span class="pill">Chessboard DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- KNAPSACK DP -->
+        <div class="category">
+          <div class="cat-title">5. Knapsack DP</div>
+          <div class="cat-note">DP based on pick/skip with capacity constraints.</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">0/1 Knapsack</span>
+              <span class="pill">Unbounded Knapsack</span>
+              <span class="pill">Bounded Knapsack</span>
+              <span class="pill">Combination vs Permutation Knapsack</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- TREE / GRAPH DP -->
+        <div class="category">
+          <div class="cat-title">6. Tree / Graph DP</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Tree DP (Subtree DP)</span>
+              <span class="pill">Tree Diameter</span>
+              <span class="pill">Vertex Cover on Tree</span>
+              <span class="pill">DAG DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- BITMASK DP -->
+        <div class="category">
+          <div class="cat-title">7. Bitmask DP</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">TSP</span>
+              <span class="pill">Assignment Problem</span>
+              <span class="pill">Subset DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- DIGIT DP -->
+        <div class="category">
+          <div class="cat-title">8. Digit DP</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Count ≤ N</span>
+              <span class="pill">Digit Sum Constraints</span>
+              <span class="pill">No Repeated Digits</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- COUNTING DP -->
+        <div class="category">
+          <div class="cat-title">9. Counting DP</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Ways Counting</span>
+              <span class="pill">Pattern Counting</span>
+              <span class="pill">Lexicographic Reconstruction DP</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- STATE MACHINE DP -->
+        <div class="category">
+          <div class="cat-title">10. State-Machine / Game DP</div>
+          <ul class="cat-list">
+            <li>
+              <span class="pill">Multi-State Stock DP</span>
+              <span class="pill">Nim / Grundy Games</span>
+              <span class="pill">Finite-State Automaton DP</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
+
