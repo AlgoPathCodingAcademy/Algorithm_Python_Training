@@ -1,6 +1,7 @@
 num = 789
 
 digits = []
+
 while True:
     remainder = num % 10
     digits.append(remainder)
