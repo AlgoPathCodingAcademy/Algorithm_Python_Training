@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prefix DP vs Subsequence DP — Pattern Guide</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #020617;
+      --bg-card: #020617;
+      --bg-soft: #0b1220;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --pill-bg: #0f172a;
+      --pill-border: #334155;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 55%, #000 100%);
+      color:var(--text);
+    }
+    .page { max-width:1100px; margin:2rem auto 3rem; padding:0 1rem; }
+    .hero { text-align:center; margin-bottom:1.5rem; }
+    .hero-title {
+      font-size:1.9rem;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+    .hero-sub {
+      margin-top:0.4rem;
+      color:var(--text-soft);
+      font-size:0.9rem;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap:1.2rem;
+      margin-top:1.5rem;
+    }
+    @media (max-width: 830px) { .grid { grid-template-columns:1fr; } }
+
+    .card {
+      background:var(--bg-card);
+      border-radius:18px;
+      border:1px solid var(--border);
+      padding:1rem 1.2rem;
+      box-shadow:0 18px 45px rgba(15,23,42,0.7);
+    }
+    .card h2 {
+      margin:0 0 0.3rem;
+      font-size:1.2rem;
+      display:flex;
+      align-items:center;
+      gap:0.4rem;
+    }
+    .tag {
+      font-size:0.7rem;
+      padding:0.1rem 0.4rem;
+      border-radius:999px;
+      border:1px solid var(--accent-soft);
+      background:var(--accent-soft);
+      color:var(--accent);
+    }
+    .card p { margin:0.25rem 0 0.45rem; font-size:0.87rem; color:var(--text-soft); }
+    .pill-row { margin-top:0.3rem; }
+    .pill {
+      display:inline-block;
+      background:var(--pill-bg);
+      border:1px solid var(--pill-border);
+      border-radius:999px;
+      padding:0.14rem 0.55rem;
+      font-size:0.78rem;
+      margin:0.12rem 0.12rem 0.12rem 0;
+      color:#cbd5e1;
+      white-space:nowrap;
+    }
+
+    h3 {
+      margin:0.5rem 0 0.25rem;
+      font-size:0.98rem;
+    }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; padding:0; font-size:0.86rem; }
+    li { margin-bottom:0.22rem; }
+    .note { font-size:0.8rem; color:var(--text-soft); margin-top:0.2rem; }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:0.8rem;
+      background:#020617;
+      border-radius:999px;
+      border:1px solid #1f2937;
+      padding:0.03rem 0.35rem;
+      color:#e5e7eb;
+    }
+
+    .section-title {
+      margin:1.9rem 0 0.5rem;
+      font-size:1.1rem;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:0.4rem;
+    }
+    .section-sub {
+      margin:0 0 0.7rem;
+      font-size:0.86rem;
+      color:var(--text-soft);
+    }
+
+    .callout {
+      margin-top:0.6rem;
+      border-radius:14px;
+      background:rgba(56,189,248,0.06);
+      border:1px solid rgba(56,189,248,0.35);
+      padding:0.55rem 0.7rem;
+      font-size:0.84rem;
+    }
+    .callout strong { color:#e0f2fe; }
+
+    .rule-box {
+      margin-top:0.7rem;
+      display:grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap:0.6rem;
+    }
+    @media (max-width: 720px) { .rule-box { grid-template-columns:1fr; } }
+    .rule {
+      background:#020617;
+      border-radius:12px;
+      border:1px solid #1e293b;
+      padding:0.6rem 0.7rem;
+      font-size:0.83rem;
+    }
+    .rule b { color:#e5e7eb; }
+
+    .highlight {
+      color:#facc15;
+      font-weight:600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-title">Prefix DP vs Subsequence DP</div>
+      <div class="hero-sub">How to quickly recognise the pattern and write the correct transition.</div>
+    </header>
+
+    <section class="grid">
+      <!-- Prefix DP card -->
+      <article class="card">
+        <h2>1. Prefix DP (1D) <span class="tag">“No comparisons” family</span></h2>
+        <p>State is based on a prefix index <code>i</code>. We never compare values like <code>a[i]</code> with <code>a[j]</code>. We only ask: “What can we do using the first <code>i</code> positions?”</p>
+        <h3>Typical state & transition</h3>
+        <ul>
+          <li><b>State:</b> <code>dp[i]</code> — best answer for prefix <code>[0..i-1]</code>.</li>
+          <li><b>Transition:</b> combine earlier prefixes:
+            <br><code>dp[i] = F( dp[0], dp[1], ..., dp[i-1] )</code></li>
+          <li>No <code>a[i]</code> vs <code>a[j]</code> conditions.</li>
+        </ul>
+
+        <h3>Examples</h3>
+        <div class="pill-row">
+          <span class="pill">Word Break</span>
+          <span class="pill">House Robber</span>
+          <span class="pill">Paint House</span>
+          <span class="pill">Stock DP (simple)</span>
+          <span class="pill">Climbing Stairs</span>
+        </div>
+
+        <p class="note">
+          In all of these, we only care about “how far” (prefix length), not which element we pick as part of a subsequence.
+        </p>
+      </article>
+
+      <!-- Subsequence DP card -->
+      <article class="card">
+        <h2>2. Subsequence DP <span class="tag">Comparison-based Prefix DP</span></h2>
+        <p>State still uses indices, but transitions depend on comparing elements or characters. We decide whether to <b>use or skip</b> something.</p>
+
+        <h3>2.1 1D Subsequence DP</h3>
+        <ul>
+          <li><b>State:</b> <code>dp[i]</code> — best subsequence ending at index <code>i</code>.</li>
+          <li><b>Transition:</b> look at all <code>j &lt; i</code> and compare:
+            <br><code>if a[j] &lt; a[i]: dp[i] = max(dp[i], dp[j] + 1)</code></li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">LIS</span>
+          <span class="pill">LDS</span>
+          <span class="pill">MSIS</span>
+        </div>
+
+        <h3>2.2 2D Subsequence DP</h3>
+        <ul>
+          <li><b>State:</b> <code>dp[i][j]</code> — best relation between prefixes <code>S[0..i-1]</code> and <code>T[0..j-1]</code>.</li>
+          <li><b>Transition (example, subsequence counting):</b><br>
+            If <code>S[i-1] == T[j-1]</code>:<br>
+            <code>dp[i][j] = dp[i-1][j-1] + dp[i-1][j]</code><br>
+            else:<br>
+            <code>dp[i][j] = dp[i-1][j]</code></li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">LCS</span>
+          <span class="pill">Edit Distance</span>
+          <span class="pill">Subsequence Counting</span>
+          <span class="pill">Pattern Matching DP</span>
+        </div>
+        <p class="note">
+          Key feature: transitions only valid when a comparison condition holds (e.g. <code>&lt;</code>, <code>&gt;</code>, <code>==</code>).
+        </p>
+      </article>
+    </section>
+
+    <!-- How to distinguish them -->
+    <section>
+      <h2 class="section-title">How to Tell: Prefix DP or Subsequence DP?</h2>
+      <p class="section-sub">Don’t look at “one string vs two strings”. Look at the <b>transition pattern</b> and the <b>problem wording</b>.</p>
+
+      <div class="rule-box">
+        <div class="rule">
+          <b>Prefix DP (1D)</b>
+          <ul>
+            <li>No comparisons like <code>a[i] &lt; a[j]</code> or <code>S[i] == T[j]</code>.</li>
+            <li><code>dp[i]</code> depends only on earlier prefixes:
+              <br><code>dp[i-1], dp[i-2], ..., dp[0]</code>.</li>
+            <li>Often linear or “cut at j” style:
+              <br><code>dp[i] = combine(dp[0..i-1])</code></li>
+          </ul>
+          <p class="note">
+            Think: “How many ways / min cost / max value up to position <code>i</code>?”
+          </p>
+        </div>
+
+        <div class="rule">
+          <b>Subsequence DP</b>
+          <ul>
+            <li>There is ALWAYS some comparison condition.</li>
+            <li>1D: compare <code>a[i]</code> with previous elements <code>a[j]</code>.</li>
+            <li>2D: compare characters <code>S[i-1]</code> and <code>T[j-1]</code>.</li>
+            <li>Transition has “use or skip” flavour:
+              <br><code>use current</code> vs <code>skip current</code>.</li>
+          </ul>
+          <p class="note">
+            Think: “Should I take this element/character into the subsequence or ignore it?”
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>One-sentence rule:</strong>
+        If your DP transition never compares values or characters, it’s Prefix DP.  
+        As soon as you see conditions like <code>a[j] &lt; a[i]</code> or <code>S[i-1] == T[j-1]</code>, you are in Subsequence DP.
+      </div>
+    </section>
+
+    <!-- Why students won’t confuse them -->
+    <section>
+      <h2 class="section-title">Why Students Won’t Mistake Subsequence DP for Prefix DP</h2>
+      <p class="section-sub">Because the problem wording and the transition pattern look very different.</p>
+
+      <h3>Typical wording of <span class="highlight">Prefix DP (1D)</span> problems</h3>
+      <ul>
+        <li>“Minimum cost to reach step <code>i</code> …”</li>
+        <li>“Can we segment the prefix into words …”</li>
+        <li>“Max profit up to day <code>i</code> …”</li>
+        <li>“Number of ways to reach index <code>i</code> …”</li>
+        <li>No mention of “increasing / decreasing / matching / aligned / common subsequence”.</li>
+      </ul>
+
+      <h3>Typical wording of <span class="highlight">Subsequence DP</span> problems</h3>
+      <ul>
+        <li>“Longest increasing / decreasing subsequence …”</li>
+        <li>“Maximum sum increasing subsequence …”</li>
+        <li>“Longest common subsequence of two strings …”</li>
+        <li>“Minimum edits (insert/delete/replace) to turn A into B …”</li>
+        <li>“How many subsequences of S equal T?”</li>
+      </ul>
+
+      <p class="note">
+        As soon as the problem talks about <b>increasing / decreasing / matching / common / subsequence / convert one string to another</b>,  
+        students should immediately think: <span class="highlight">Subsequence DP (comparison-based)</span>.
+      </p>
+
+      <div class="callout">
+        <strong>Teaching tip:</strong>  
+        Train students to ask this first question:
+        <br><br>
+        <b>“Does the DP need to compare positions or characters?”</b><br>
+        • If <b>no</b> → start from Prefix DP templates.<br>
+        • If <b>yes</b> → start from Subsequence DP templates (1D or 2D).
+      </div>
+    </section>
+  </div>
+</body>
+</html>
