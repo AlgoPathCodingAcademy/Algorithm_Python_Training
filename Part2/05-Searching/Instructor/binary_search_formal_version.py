@@ -6,15 +6,15 @@ def binary_search_first(nums, target):
 
     while True:
         # ── stop when ≤ 2 elements remain ─────────────────────────
-        if left + 1 >= right:        #  ← was the loop-guard before
+        if left + 1 >= right:
             break
 
         # ── normal binary-search step ─────────────────────────────
         mid = (left + right) // 2
-        if nums[mid] < target:
-            left = mid               # discard left half (inc. mid)
-        else:                        # nums[mid] ≥ target
-            right = mid              # keep mid; might be the first
+        if nums[mid] >= target:
+            right = mid              # keep left half (incl. mid); mid may be first
+        else:                        # nums[mid] < target
+            left = mid               # discard left half (incl. mid)
 
     # ── post-processing: check the surviving 1–2 elements ────────
     if nums[left] == target:
