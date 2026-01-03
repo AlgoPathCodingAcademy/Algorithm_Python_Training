@@ -22,6 +22,26 @@ def search_tree(root,target):
         return True
     else:
         return left_result or right_result
+
+# Support early break
+def search_tree_v2(root, target):
+    if root is None:
+        return False
+
+    # Check current node
+    if root.val == target:
+        return True
+
+    # Search left subtree
+    if binary_tree_search(root.left, target):
+        return True
+
+    # Search right subtree
+    if binary_tree_search(root.right, target):
+        return True
+
+    return False
+
 #TODO
 
 # Test Case 1: Value exists in the tree
