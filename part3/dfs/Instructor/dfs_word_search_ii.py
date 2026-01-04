@@ -1,52 +1,51 @@
-def convertToPoint(word,maze):
-    points = []
-    for row in range(len(maze)):
-        for column in range(len(maze[0])):
-            if maze[row][column] == word:
-                points.append((row,column))
+class Solution:
+    def getNeighbors(self, current, visited):
+        neighbors = []
+        directions = [(-1,0),(1,0),(0,-1),(0,1)]
+        row, column = current
+        for drow, dcolumn in directions:
+            current_row = row + drow
+            current_column = column + dcolumn
+            if current_row >=0 and current_row < len(self.board) and \
+                current_column >=0 and current_column < len(self.board[0]):
+                if (current_row,current_column) not in visited:
+                    neighbors.append((current_row,current_column))
 
-    return points
+        return neighbors
 
-def dfs_search(path,maze,visited,level,word):
-    current_row,current_column = path[-1]
-    directions = [(-1,0),(1,0),(0,1),(0,-1)]
-    if word[level] == maze[current_row][current_column]:
-        if len(word)-1 == level:
+    def dfs(self, path, level, visited, word):
+        start = path[-1]
+        row,column = path[-1]
+        if word[level] != self.board[row][column]:
+            return False
+
+        if level == len(word) - 1:
             return True
 
-        for drow,dcolumn in directions:
-            new_row = current_row + drow
-            new_column = current_column + dcolumn
-            if (new_row >=0 and new_row < len(maze)) and \
-                (new_column >=0 and new_column < len(maze[0])):
-                if (new_row,new_column) not in visited:
-                    visited[(new_row,new_column)] = True
-                    result = dfs_search(path + [(new_row,new_column)],maze,visited,level+1,word)
-                    del visited[(new_row,new_column)]
-                    if result:
-                        return result
-    else:
+        neighbors = self.getNeighbors(start,visited)
+        isFound = False
+        for neighbor_row, neighbor_column in neighbors:
+            visited[(neighbor_row,neighbor_column)] = True
+            isFound = self.dfs(path + [(neighbor_row,neighbor_column)],level + 1, visited, word)
+            del visited[(neighbor_row,neighbor_column)]
+            if isFound:
+                return True
+
         return False
-    
 
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        self.board = board
+        result = []
 
-def word_search_i_i(board, words):
-    # write your code here
-    output = []
-    for word in words:
-        start_point = convertToPoint(word[0],board)
-        for point in start_point:
-            visited = {}
-            visited[point] = True
-            if dfs_search([point],board,visited,0,word):
-                output.append(word)
-                break
+        for word in words:
+            for row in range(len(board)):
+                for column in range(len(board[0])):
+                    if board[row][column] == word[0]:
+                        path = [(row,column)]
+                        visited = {}
+                        visited[(row,column)] = True
+                        if self.dfs(path,0,visited,word):
+                            result.append(word)
 
-    return output
-
-board = ["doaf","agai","dcan"]
-words = ["dog","dad","dgdg","can","again"]
-print(word_search_i_i(board,words))
-board = ["a"]
-words = ["b"]
-print(word_search_i_i(board,words))
+        final_result = set(result)
+        return list(final_result)
