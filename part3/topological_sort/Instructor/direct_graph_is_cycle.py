@@ -1,34 +1,74 @@
-def dfs_v2(node, path, visited):
-    # If node is on the current recursion stack → cycle
-    if node in path:
-        return True
+adj_list = {
+    0: [1, 3, 5],
+    1: [2, 3],
+    2: [],
+    3: [4],
+    4: [5],
+    5: [3]
+}
 
-    # If node is fully processed → safe
+def dfs(node,visited,path):
+    if node in path:
+        print("cycle detected", node, "in",path)
+        return True
+    
     if node in visited:
         return False
-
-    # Mark node as being on the current path
+    
+    visited[node] = True
     path[node] = True
+    
+    neighbors = adj_list[node]
+    
+    for neighbor in neighbors:
+        if dfs(neighbor,visited,path):
+            return True
+    
+    del path[node]
+        
+    return False
+        
+visited = {}
+path = {}
+for key in adj_list:
+    if key not in visited:
+        if dfs(key,visited,path):
+            break 
 
+
+# v2 verison 
+adj_list = {
+    0: [1, 3, 5],
+    1: [2, 3],
+    2: [],
+    3: [4],
+    4: [5],
+    5: [3]
+}
+
+def dfs_v2(node,path,visited):
     for neighbor in adj_list[node]:
-        if dfs_v2(neighbor, path, visited):
-            print(
-                "Cycle detected via edge:",
-                node, "→", neighbor,
-                "| path:", list(path.keys())
-            )
+        if neighbor in path:
+            print("Cycle Detected", "neighbor",neighbor,"in path",path)
             return True
 
-    # Remove node from current path, mark fully processed
-    del path[node]
-    visited[node] = True
-    return False
-    
-    
-path = {}
-visited = {}
+        if neighbor not in visited:
+            path[neighbor] = True
+            visited[neighbor] = True
+            if dfs_v2(neighbor,path,visited):
+                return True
+            del path[neighbor]
 
-for node in adj_list:
-    if dfs_v2(node, path, visited):
-        break
+    return False
+
+
+visited = {}
+path = {}
+for key in adj_list:
+    if key not in visited:
+        visited[key] = True
+        path[key] = True
+        if dfs_v2(key,path,visited):
+            break
+        del path[key]
 
