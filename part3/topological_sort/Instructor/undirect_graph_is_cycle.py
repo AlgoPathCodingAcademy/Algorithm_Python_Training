@@ -1,37 +1,42 @@
-# version 1 - DFS add visited first
-adj_list = {
-    0: [1, 3, 5],
-    1: [0, 2, 3],
-    2: [1],
-    3: [0, 1, 4, 5],
-    4: [3, 5],
+# version 1 - DFS add visited first - recommended
+adj_list = {    
+    0: [1, 3, 5], 
+    1: [0, 2, 3], 
+    2: [1],    
+    3: [0, 1, 4, 5], 
+    4: [3, 5], 
     5: [0, 3, 4]
 }
 
 
-def getNeighbors(node):
-    return adj_list[node]
-
-def dfs_v2(node, visited, parent):
+def dfs(node, visited, parent):
     visited[node] = True
-    neighbors = getNeighbors(node)
+    
+    neighbors = adj_list[node]
     
     for neighbor in neighbors:
-        if neighbor in visited and neighbor != parent:
-            print("Cycle detected: neighbor", neighbor, "parent",parent, "node",node)
-            return True
-            
-        if neighbor not in visited:
-            if dfs_v2(neighbor,visited,node):
+        if neighbor in visited:
+            if neighbor != parent:
+                print("Cycle is detected at node",node,"for neighbor",neighbor,"parent",parent)
                 return True
-
+        else:     
+            if dfs(neighbor, visited, node):
+                return True
+                
     return False
     
+has_cycle = False
 visited = {}
-print(dfs_v2(0,visited,-1))
+for node in adj_list:
+    if node not in visited:
+        if dfs(node, visited, -1):
+            has_cycle = True
+            break
+            
+print(has_cycle)
 
 
-# version 2:
+# version 2 - not recommended
 adj_list = {
     0: [1, 3, 5],
     1: [0, 2, 3],
@@ -67,5 +72,14 @@ def dfs(node, parent, visited):
 visited = {}
 
 visited[0] = True
+
+# Caller-marking DFS becomes awkward and error-prone when you need to run DFS for all nodes (disconnected graphs).
+# It is discouraged
+#for node in adj_list:
+#    if node not in visited:
+#        visited[node] = True
+#        if dfs(node, -1, visited):
+#            has_cycle = True
+#            break
 
 has_cycle = dfs(0, -1, visited)
