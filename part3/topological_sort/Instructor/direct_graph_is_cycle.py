@@ -1,3 +1,36 @@
+def dfs(node, visited, visiting):
+    # mark entry
+    visiting.add(node)
+
+    for neighbor in adj_list.get(node, []):
+        # Case 1: back edge → cycle
+        if neighbor in visiting:
+            return True
+
+        # Case 2: tree edge → recurse
+        if neighbor not in visited:
+            if dfs(neighbor, visited, visiting):
+                return True
+
+    # mark exit
+    visiting.remove(node)
+    visited.add(node)
+    return False
+
+
+visited = set()
+visiting = set()
+has_cycle = False
+
+for node in adj_list:
+    if node not in visited:
+        if dfs(node, visited, visiting):
+            has_cycle = True
+            break
+
+print(has_cycle)
+
+
 adj_list = {
     0: [1, 3, 5],
     1: [2, 3],
@@ -71,4 +104,6 @@ for key in adj_list:
         if dfs_v2(key,path,visited):
             break
         del path[key]
+
+
 
