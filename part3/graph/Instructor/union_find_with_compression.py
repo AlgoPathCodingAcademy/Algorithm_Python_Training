@@ -25,6 +25,11 @@ class UnionFind:
         rootY = self.find(y)
 
         if rootX != rootY:
+            # Union by size (ranking rule)
+            # Ensure rootX is the larger set
+            if self.size[rootX] < self.size[rootY]:
+                rootX, rootY = rootY, rootX
+
             self.parent[rootX] = rootY  # Attach rootX's tree under rootY
             self.size[rootY] += self.size[rootX]  # Update the size of rootY's set
             self.num_sets -= 1  # Reduce the number of sets by 1
