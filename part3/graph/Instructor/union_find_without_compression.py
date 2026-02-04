@@ -39,7 +39,13 @@ class UnionFind:
             
             # Update
             self.num_sets = self.num_sets - 1
-        
+            
+            # merge succeeded
+            return True
+
+        # merge failed
+        return False
+
     def connected(self, x, y):
         # Check if x and y belong to the same set
         parent_x = self.find(x)

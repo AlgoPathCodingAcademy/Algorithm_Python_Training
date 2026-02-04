@@ -34,6 +34,12 @@ class UnionFind:
             self.size[rootY] += self.size[rootX]  # Update the size of rootY's set
             self.num_sets -= 1  # Reduce the number of sets by 1
 
+            # merge succeeded
+            return True
+
+        # merge failed
+        return False
+
     def connected(self, x, y):
         # Check if x and y belong to the same set
         return self.find(x) == self.find(y)
