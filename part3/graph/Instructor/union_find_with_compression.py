@@ -27,7 +27,7 @@ class UnionFind:
         if rootX != rootY:
             # Union by size (ranking rule)
             # Ensure rootX is the larger set
-            if self.size[rootX] < self.size[rootY]:
+            if self.size[rootX] > self.size[rootY]:
                 rootX, rootY = rootY, rootX
 
             self.parent[rootX] = rootY  # Attach rootX's tree under rootY
